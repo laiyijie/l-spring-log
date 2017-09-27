@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="logFilePath">$${env:BNM_LOGPATH}/</Property>
+        <Property name="logFilePath">$${env:L_LOGPATH}/</Property>
     </Properties>
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">

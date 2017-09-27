@@ -7,7 +7,7 @@ import me.laiyijie.spring.log.builder.ErrorJsonLogBuilder;
 /**
  * Created by admin on 2017-05-19.
  */
-public class BLog {
+public class LLog {
 
     public static BusinessJsonLogBuilder businessJsonLogBuilder(String module) {
         return new BusinessJsonLogBuilder(module);

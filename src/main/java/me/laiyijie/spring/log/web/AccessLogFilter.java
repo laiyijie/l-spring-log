@@ -1,10 +1,9 @@
 package me.laiyijie.spring.log.web;
 
-import me.laiyijie.spring.log.BLog;
+import me.laiyijie.spring.log.LLog;
 import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.mock.web.DelegatingServletInputStream;
 import org.springframework.mock.web.DelegatingServletOutputStream;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -32,6 +31,7 @@ public class AccessLogFilter extends OncePerRequestFilter {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
         String requestPayload = getPayLoad(requestWrapper.getContentAsByteArray(),
                 response.getCharacterEncoding());
+        request.getSession().getAttribute(usernameKey);
         filterChain.doFilter(requestWrapper, new HttpServletResponseWrapper
                 (response) {
             @Override
@@ -51,7 +51,7 @@ public class AccessLogFilter extends OncePerRequestFilter {
 
         String responsePayload = getPayLoad(baos.toByteArray(),
                 response.getCharacterEncoding());
-        BLog.accessJsonLogBuilder()
+        LLog.accessJsonLogBuilder()
                 .addRequestPayLoad(requestPayload)
                 .addResponsePayLoad(responsePayload)
                 .put(request, usernameKey)
